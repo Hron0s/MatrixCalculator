@@ -5,8 +5,8 @@ class Matrix
 	int rows;
 	int columns;
 	float** matrix;
-	float findDet(Matrix a);
 
+	float findDet(Matrix a);
 
 public:
 	Matrix();
@@ -16,8 +16,8 @@ public:
 
 	Matrix(const Matrix &other);
 
-	void fill();
-	void print();
+	int getRows();
+	int getColumns();
 
 	float* operator [] (int i);
 	Matrix& operator = (const Matrix& other);
@@ -33,16 +33,14 @@ public:
 	Matrix algebraicComplement(int a, int b);
 	Matrix matrixAlgebraicComplement();
 	Matrix inverseMatrix();
+	float  det();
 
 	friend std::ostream& operator << (std::ostream& out, const Matrix& myMatrix);
+	friend std::istream& operator >> (std::istream& in, Matrix& myMatrix);
 
+	friend Matrix GaussMethod(Matrix a, Matrix b);
 	friend Matrix CramerMethod(Matrix a, Matrix b);
 	friend Matrix MatrixMethod(Matrix a, Matrix b);
 
-	float det();
-
-
 };
-
-
 

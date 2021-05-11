@@ -61,28 +61,15 @@ Matrix::Matrix(const Matrix& other)
 	}
 }
 
-void Matrix::fill()
+
+int Matrix::getRows()
 {
-	for (int i = 0; i < rows; i++)
-	{
-		for (int j = 0; j < columns; j++)
-		{
-			cout << "Enter matrix[" << i << "][" << j << "]: ";
-			cin >> matrix[i][j];
-		}
-	}
+	return rows;
 }
 
-void Matrix::print()
+int Matrix::getColumns()
 {
-	for (int i = 0; i < rows; i++)
-	{
-		for (int j = 0; j < columns; j++)
-		{
-			cout << matrix[i][j] << "\t";
-		}
-		cout << endl;
-	}
+	return columns;
 }
 
 
@@ -227,7 +214,6 @@ Matrix Matrix::transpose()
 
 std::ostream& operator << (std::ostream& out, const Matrix& myMatrix)
 {
-	out << "Matrix: " << endl;
 	for (int i = 0; i < myMatrix.rows; i++)
 	{
 		for (int j = 0; j < myMatrix.columns; j++)
@@ -239,44 +225,17 @@ std::ostream& operator << (std::ostream& out, const Matrix& myMatrix)
 	return out;
 }
 
-float Matrix::findDet(Matrix a)
+std::istream& operator >> (std::istream& in, Matrix& myMatrix)
 {
-	if (a.rows == 1)
+	for (int i = 0; i < myMatrix.rows; i++)
 	{
-		return a[0][0];
-	}
-	else if (a.rows == 2)
-	{
-		return a[0][0] * a[1][1] - a[0][1] * a[1][0];
-	}
-	else
-	{
-		float d = 0;
-		for (int k = 0; k < a.rows; k++)
+		for (int j = 0; j < myMatrix.columns; j++)
 		{
-			Matrix b(a.rows - 1);
-			for (int i = 1; i < a.rows; i++) {
-				int t = 0;
-				for (int j = 0; j < a.rows; j++) 
-				{
-					if (j == k)
-					{
-						continue;
-					}
-					b[i - 1][t] = a[i][j];
-					t++;
-				}
-			}
-			d += pow(-1, k + 2) * a[0][k] * findDet(b);
+			cout << "Enter matrix[" << i << "][" << j << "]: ";
+			in >> myMatrix.matrix[i][j];
 		}
-		return d;
 	}
-}
-
-float Matrix::det()
-{
-	Matrix tmp(*this);
-	return findDet(tmp);
+	return in;
 }
 
 Matrix Matrix::algebraicComplement(int a, int b)
@@ -324,8 +283,42 @@ Matrix Matrix::inverseMatrix()
 	return matrixAlgebraicComplement().transpose() * (1 / det());
 }
 
+float Matrix::findDet(Matrix a)
+{
+	if (a.rows == 1)
+	{
+		return a[0][0];
+	}
+	else if (a.rows == 2)
+	{
+		return a[0][0] * a[1][1] - a[0][1] * a[1][0];
+	}
+	else
+	{
+		float d = 0;
+		for (int k = 0; k < a.rows; k++)
+		{
+			Matrix b(a.algebraicComplement(k, 0));
+			d += pow(-1, k + 2) * a[k][0] * findDet(b);
+		}
+		return d;
+	}
+}
+
+float Matrix::det()
+{
+	Matrix tmp(*this);
+	return findDet(tmp);
+}
+
+Matrix GaussMethod(Matrix a, Matrix b)
+{
+
+}
+
 Matrix CramerMethod(Matrix a, Matrix b)
 {
+	float aDet = a.det();
 	Matrix x(a.rows, 1);
 	for (int i = 0; i < a.rows; i++)
 	{
@@ -344,7 +337,9 @@ Matrix CramerMethod(Matrix a, Matrix b)
 				}
 			}
 		}
-		x[i][0] = (tmp.det() / a.det());
+
+		x[i][0] = tmp.det() / aDet;
+		cout << endl << endl;
 	}
 	return x;
 }
