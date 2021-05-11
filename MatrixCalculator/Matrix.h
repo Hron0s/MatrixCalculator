@@ -38,6 +38,7 @@ public:
 
 	friend Matrix CramerMethod(Matrix a, Matrix b);
 	friend Matrix MatrixMethod(Matrix a, Matrix b);
+	friend Matrix GaussMethod(Matrix a, Matrix b);
 
 };
 

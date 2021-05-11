@@ -341,3 +341,4 @@ Matrix MatrixMethod(Matrix a, Matrix b)
 {
 	return a.inverseMatrix() * b;
 }
+
