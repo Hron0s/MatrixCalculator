@@ -17,6 +17,9 @@ void logo()
 
 int main()
 {
+	Matrix a(3);
+	cin >> a;
+	cout << a.tringulation();
 	return 0;
 }
 

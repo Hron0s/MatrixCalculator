@@ -72,6 +72,35 @@ int Matrix::getColumns()
 	return columns;
 }
 
+int Matrix::rowMaxElement(int n1, int n2)
+{
+	int index = 0;
+	int max = matrix[0][0];
+
+	for (int i = n1; i < n2; i++)
+	{
+		for (int j = 0; j < columns; j++)
+		{
+			if (matrix[i][j] > max)
+			{
+				max = matrix[i][j];
+				index = i;
+			}
+		}
+	}
+	return index;
+}
+
+void Matrix::swapRows(int n1, int n2)
+{
+	for (int i = 0; i < columns; i++)
+	{
+		float tmp = matrix[n1][i];
+		matrix[n1][i] = matrix[n2][i];
+		matrix[n2][i] = tmp;
+	}
+}
+
 
 float* Matrix::operator [] (int i) 
 { 
@@ -305,6 +334,27 @@ float Matrix::findDet(Matrix a)
 	}
 }
 
+Matrix Matrix::tringulation() 
+{
+	Matrix a(*this);
+	for (int i = 0; i < rows; i++)
+	{
+		int imax = rowMaxElement(i, rows);
+		swapRows(i, imax);
+
+		for (int j = i + 1; j < rows; j++)
+		{
+			float mul = -a[j][i] / a[i][i];
+
+			for (int k = 0; k < columns; k++)
+			{
+				a.matrix[j][k] = a.matrix[j][k] + a.matrix[i][k] * mul;
+			}
+		}
+	}
+	return a;
+}
+
 float Matrix::det()
 {
 	return findDet(*this);
@@ -331,7 +381,6 @@ Matrix CramerMethod(Matrix a, Matrix b)
 				}
 			}
 		}
-
 		x[i][0] = tmp.det() / aDet;
 	}
 	return x;

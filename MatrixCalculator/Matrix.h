@@ -5,6 +5,9 @@ class Matrix
 	float** matrix;
 
 	float findDet(Matrix a);
+public:
+	int rowMaxElement(int n1, int n2);
+	void swapRows(int n1, int n2);
 
 public:
 	Matrix();
@@ -31,6 +34,7 @@ public:
 	Matrix algebraicComplement(int a, int b);
 	Matrix matrixAlgebraicComplement();
 	Matrix inverseMatrix();
+	Matrix tringulation();
 	float  det();
 
 	friend std::ostream& operator << (std::ostream& out, const Matrix& myMatrix);
