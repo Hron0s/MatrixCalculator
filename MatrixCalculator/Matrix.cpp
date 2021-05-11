@@ -391,3 +391,32 @@ Matrix MatrixMethod(Matrix a, Matrix b)
 	return a.inverseMatrix() * b;
 }
 
+Matrix GaussMethod(Matrix a, Matrix b)
+{
+	Matrix x(a.rows, 1);
+	Matrix tmp(a.rows, a.columns + 1);
+	for (int i = 0; i < a.rows; i++)
+	{
+		for (int j = 0; j < a.columns; j++)
+		{
+			tmp[i][j] = a[i][j];
+		}
+	}
+	for (int i = 0; i < a.rows; i++)
+	{
+		tmp[i][a.columns] = b[i][0];
+	}
+	tmp = tmp.tringulation();
+
+	for (int i = a.rows - 1; i >= 0; i--)
+	{
+		x[i][0] = tmp[i][a.rows] / tmp[i][i];
+		for (int c = a.rows - 1; c > i; c--)
+		{
+			x[i][0] = x[i][0] - tmp[i][c] * x[c][0] / tmp[i][i];
+		}
+	}
+
+	return x;
+}
+
