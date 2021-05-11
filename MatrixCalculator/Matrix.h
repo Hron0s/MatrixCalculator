@@ -1,5 +1,3 @@
-#include <iostream>
-
 class Matrix
 {
 	int rows;
@@ -37,10 +35,6 @@ public:
 
 	friend std::ostream& operator << (std::ostream& out, const Matrix& myMatrix);
 	friend std::istream& operator >> (std::istream& in, Matrix& myMatrix);
-
-	friend Matrix GaussMethod(Matrix a, Matrix b);
-	friend Matrix CramerMethod(Matrix a, Matrix b);
-	friend Matrix MatrixMethod(Matrix a, Matrix b);
 
 };
 

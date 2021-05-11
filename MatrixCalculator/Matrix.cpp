@@ -231,7 +231,7 @@ std::istream& operator >> (std::istream& in, Matrix& myMatrix)
 	{
 		for (int j = 0; j < myMatrix.columns; j++)
 		{
-			cout << "Enter matrix[" << i << "][" << j << "]: ";
+			cout << "Enter matrix[" << i + 1 << "][" << j + 1 << "]: ";
 			in >> myMatrix.matrix[i][j];
 		}
 	}
@@ -307,25 +307,24 @@ float Matrix::findDet(Matrix a)
 
 float Matrix::det()
 {
-	Matrix tmp(*this);
-	return findDet(tmp);
+	return findDet(*this);
 }
 
-Matrix GaussMethod(Matrix a, Matrix b)
-{
-
-}
+//Matrix GaussMethod(Matrix a, Matrix b)
+//{
+//
+//}
 
 Matrix CramerMethod(Matrix a, Matrix b)
 {
 	float aDet = a.det();
-	Matrix x(a.rows, 1);
-	for (int i = 0; i < a.rows; i++)
+	Matrix x(a.getRows(), 1);
+	for (int i = 0; i < a.getRows(); i++)
 	{
-		Matrix tmp(a.rows, a.columns);
-		for (int j = 0; j < a.rows; j++)
+		Matrix tmp(a.getRows(), a.getColumns());
+		for (int j = 0; j < a.getRows(); j++)
 		{
-			for (int k = 0; k < a.columns; k++)
+			for (int k = 0; k < a.getColumns(); k++)
 			{
 				if (i == k)
 				{
@@ -339,7 +338,6 @@ Matrix CramerMethod(Matrix a, Matrix b)
 		}
 
 		x[i][0] = tmp.det() / aDet;
-		cout << endl << endl;
 	}
 	return x;
 }

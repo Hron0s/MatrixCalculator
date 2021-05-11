@@ -17,6 +17,7 @@ void logo()
 
 int main()
 {
+
 	return 0;
 }
 
