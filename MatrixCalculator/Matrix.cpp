@@ -310,11 +310,6 @@ float Matrix::det()
 	return findDet(*this);
 }
 
-//Matrix GaussMethod(Matrix a, Matrix b)
-//{
-//
-//}
-
 Matrix CramerMethod(Matrix a, Matrix b)
 {
 	float aDet = a.det();
