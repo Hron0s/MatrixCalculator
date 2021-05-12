@@ -17,14 +17,6 @@ void logo()
 
 int main()
 {
-	Matrix a(3);
-	Matrix b(3, 1);
-	cin >> a >> b;
-	cout << a << endl;
-	cout << b << endl;
-	cout << GaussMethod(a, b) << endl << endl;
-	cout << MatrixMethod(a, b) << endl << endl;
-	cout << CramerMethod(a, b) << endl << endl;
 	return 0;
 }
 

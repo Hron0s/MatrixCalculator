@@ -262,6 +262,12 @@ std::istream& operator >> (std::istream& in, Matrix& myMatrix)
 		{
 			cout << "Enter matrix[" << i + 1 << "][" << j + 1 << "]: ";
 			in >> myMatrix.matrix[i][j];
+			if (in.fail())
+			{
+				in.clear();
+				cout << "Invalid input" << endl;
+			}
+			in.ignore(32767, '\n');
 		}
 	}
 	return in;
@@ -360,6 +366,7 @@ float Matrix::det()
 	return findDet(*this);
 }
 
+
 Matrix CramerMethod(Matrix a, Matrix b)
 {
 	float aDet = a.det();
@@ -395,6 +402,7 @@ Matrix GaussMethod(Matrix a, Matrix b)
 {
 	Matrix x(a.rows, 1);
 	Matrix tmp(a.rows, a.columns + 1);
+
 	for (int i = 0; i < a.rows; i++)
 	{
 		for (int j = 0; j < a.columns; j++)
@@ -416,7 +424,6 @@ Matrix GaussMethod(Matrix a, Matrix b)
 			x[i][0] = x[i][0] - tmp[i][c] * x[c][0] / tmp[i][i];
 		}
 	}
-
 	return x;
 }
 

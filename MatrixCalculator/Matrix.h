@@ -20,6 +20,7 @@ public:
 	int getColumns();
 
 	float* operator [] (int i);
+
 	Matrix& operator = (const Matrix& other);
 	Matrix operator + (const Matrix& other);
 	Matrix operator - (const Matrix& other);
