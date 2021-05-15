@@ -11,10 +11,10 @@ class Matrix
 public:
 	Matrix();
 	Matrix(int rows);
-	Matrix(int rows,int columns);
+	Matrix(int rows, int columns);
 	~Matrix();
 
-	Matrix(const Matrix &other);
+	Matrix(const Matrix& other);
 
 	int getRows();
 	int getColumns();
@@ -29,7 +29,7 @@ public:
 	Matrix operator / (float a);
 
 	bool operator == (const Matrix& other);
-	
+
 	Matrix transpose();
 	Matrix power(int n);
 	Matrix algebraicComplement(int a, int b);

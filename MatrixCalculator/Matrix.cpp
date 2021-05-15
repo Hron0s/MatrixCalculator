@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Matrix.h"
+#include <iomanip>
 using namespace std;
 
 Matrix::Matrix()
@@ -102,9 +103,9 @@ void Matrix::swapRows(int n1, int n2)
 }
 
 
-float* Matrix::operator [] (int i) 
-{ 
-	return matrix[i]; 
+float* Matrix::operator [] (int i)
+{
+	return matrix[i];
 }
 
 Matrix& Matrix::operator = (const Matrix& other)
@@ -188,7 +189,7 @@ Matrix Matrix::operator * (float a)
 	{
 		for (int j = 0; j < this->columns; ++j)
 		{
-				temp.matrix[i][j] = (this->matrix[i][j] * a);
+			temp.matrix[i][j] = (this->matrix[i][j] * a);
 		}
 	}
 	return temp;
@@ -302,7 +303,7 @@ Matrix Matrix::algebraicComplement(int a, int b)
 				continue;
 			}
 
-			temp[t1][t2] =  matrix[i][j];
+			temp[t1][t2] = matrix[i][j];
 			t2++;
 		}
 		t1++;
@@ -350,7 +351,7 @@ float Matrix::findDet(Matrix a)
 	}
 }
 
-Matrix Matrix::tringulation() 
+Matrix Matrix::tringulation()
 {
 	Matrix a(*this);
 	for (int i = 0; i < rows; i++)
