@@ -31,6 +31,7 @@ public:
 	bool operator == (const Matrix& other);
 	
 	Matrix transpose();
+	Matrix power(int n);
 	Matrix algebraicComplement(int a, int b);
 	Matrix matrixAlgebraicComplement();
 	Matrix inverseMatrix();

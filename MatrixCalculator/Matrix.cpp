@@ -241,6 +241,16 @@ Matrix Matrix::transpose()
 	return tmp;
 }
 
+Matrix Matrix::power(int n)
+{
+	Matrix tmp(*this);
+	for (int i = 0; i < n - 1; i++)
+	{
+		tmp = (tmp * (*this));
+	}
+	return tmp;
+}
+
 std::ostream& operator << (std::ostream& out, const Matrix& myMatrix)
 {
 	for (int i = 0; i < myMatrix.rows; i++)
