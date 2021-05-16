@@ -277,8 +277,31 @@ int main()
 		}
 		case 48:
 		{
+			int n;
+			int submenu;
 			cout << "Solution of a system of linear equations" << endl;
+			cout << "The quadratic system of linear algebraic equations can be represented in matrix form as: " << endl << endl;
+			cout << "|a[1][1] a[1][2] ... a[1][n]| |x[1]|   |b[1]|" << endl;
+			cout << "|a[2][1] a[2][2] ... a[2][n]| |x[2]| = |b[2]|" << endl;
+			cout << "|   ..      ..          ..  | | .. |   | .. |" << endl;
+			cout << "|a[n][1] a[n][2] ... a[n][n]| |x[n]|   |b[n]|" << endl << endl;
+			cout << "Here A is the matrix of the system, x is the column of unknowns, and b is the column of free members." << endl << endl;
 
+			cout << "Enter the number of unknowns [n]: ";
+			cin >> n;
+
+			Matrix a(n, n), b(n, 1);
+			cout << "Enter the matrix of the system A" << endl;
+			cin >> a;
+			cout << endl;
+			cout << "Enter the column of free members b" << endl;
+			cin >> b;
+			cout << endl;
+			cout << "Matrix of the system A:" << endl;
+			cout << a << endl;
+			cout << "Column of the free member b:" << endl;
+			cout << b << endl;
+			
 			pause();
 			break;
 		}
