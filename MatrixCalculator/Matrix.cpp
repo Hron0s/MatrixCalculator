@@ -271,14 +271,20 @@ std::istream& operator >> (std::istream& in, Matrix& myMatrix)
 	{
 		for (int j = 0; j < myMatrix.columns; j++)
 		{
-			cout << "Enter matrix[" << i + 1 << "][" << j + 1 << "]: ";
-			in >> myMatrix.matrix[i][j];
-			if (in.fail())
+			bool inCorrect;
+			do
 			{
-				in.clear();
-				cout << "Invalid input" << endl;
-			}
-			in.ignore(32767, '\n');
+				inCorrect = false;
+				cout << "Enter matrix[" << i + 1 << "][" << j + 1 << "]: ";
+				in >> myMatrix.matrix[i][j];
+				if (in.fail())
+				{
+					in.clear();
+					cout << "Invalid input" << endl;
+					inCorrect = true;
+				}
+				in.ignore(32767, '\n');
+			} while (inCorrect);
 		}
 	}
 	return in;
