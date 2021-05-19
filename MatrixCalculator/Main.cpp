@@ -140,7 +140,6 @@ int main()
 			pause();
 			break;
 		}
-
 		case 53:
 		{
 			int n;
@@ -164,7 +163,6 @@ int main()
 			pause();
 			break;
 		}
-
 		case 54:
 		{
 			int n;
@@ -191,7 +189,6 @@ int main()
 			pause();
 			break;
 		}
-
 		case 55:
 		{
 			int n;
@@ -219,7 +216,6 @@ int main()
 			pause();
 			break;
 		}
-
 		case 56:
 		{
 			int n;
@@ -281,10 +277,11 @@ int main()
 			int submenu;
 			cout << "Solution of a system of linear equations" << endl;
 			cout << "The quadratic system of linear algebraic equations can be represented in matrix form as: " << endl << endl;
-			cout << "|a[1][1] a[1][2] ... a[1][n]| |x[1]|   |b[1]|" << endl;
-			cout << "|a[2][1] a[2][2] ... a[2][n]| |x[2]| = |b[2]|" << endl;
-			cout << "|   ..      ..          ..  | | .. |   | .. |" << endl;
-			cout << "|a[n][1] a[n][2] ... a[n][n]| |x[n]|   |b[n]|" << endl << endl;
+			cout << "|a[1][1] a[1][2] ... a[1][n]|   |x[1]|   |b[1]|" << endl;
+			cout << "|a[2][1] a[2][2] ... a[2][n]|   |x[2]|   |b[2]|" << endl;
+			cout << "|a[3][1] a[3][2] ... a[3][n]| * |x[3]| = |b[3]|" << endl;
+			cout << "|   ..      ..          ..  |   | .. |   | .. |" << endl;
+			cout << "|a[n][1] a[n][2] ... a[n][n]|   |x[n]|   |b[n]|" << endl << endl;
 			cout << "Here A is the matrix of the system, x is the column of unknowns, and b is the column of free members." << endl << endl;
 
 			cout << "Enter the number of unknowns [n]: ";
@@ -301,8 +298,42 @@ int main()
 			cout << a << endl;
 			cout << "Column of the free member b:" << endl;
 			cout << b << endl;
-			
-			pause();
+
+			cout << "1.Crammer Method" << endl;
+			cout << "2.Gauss Method" << endl;
+			cout << "3.Matrix Method" << endl;
+			cout << "Press espace to exit..." << endl << endl;
+
+
+			do {
+
+				submenu = _getch();
+				switch (submenu)
+				{
+				case 49:
+				{
+					cout << "Crammer Method: " << endl;
+					cout << CramerMethod(a, b) << endl;
+					break;
+				}
+				case 50:
+				{
+					cout << "Gauss Method: " << endl;
+					cout << GaussMethod(a, b) << endl;
+					break;
+				}
+				case 51:
+				{
+					cout << "Matrix Method: " << endl;
+					cout << MatrixMethod(a, b) << endl;
+					break;
+				}
+				default:
+					break;
+				}
+
+			} while (submenu != 27);
+
 			break;
 		}
 		}
