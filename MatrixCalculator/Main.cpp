@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include <conio.h>
+#include <limits>
 #include "Matrix.h"
 using namespace std;
 

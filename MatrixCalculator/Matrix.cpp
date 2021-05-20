@@ -73,6 +73,7 @@ int Matrix::getColumns()
 	return columns;
 }
 
+
 int Matrix::rowMaxElement(int n1, int n2)
 {
 	int index = 0;
@@ -229,6 +230,7 @@ bool Matrix::operator == (const Matrix& other)
 
 }
 
+
 Matrix Matrix::transpose()
 {
 	Matrix tmp(columns, rows);
@@ -250,44 +252,6 @@ Matrix Matrix::power(int n)
 		tmp = (tmp * (*this));
 	}
 	return tmp;
-}
-
-std::ostream& operator << (std::ostream& out, const Matrix& myMatrix)
-{
-	for (int i = 0; i < myMatrix.rows; i++)
-	{
-		for (int j = 0; j < myMatrix.columns; j++)
-		{
-			out << myMatrix.matrix[i][j] << "\t";
-		}
-		out << endl;
-	}
-	return out;
-}
-
-std::istream& operator >> (std::istream& in, Matrix& myMatrix)
-{
-	for (int i = 0; i < myMatrix.rows; i++)
-	{
-		for (int j = 0; j < myMatrix.columns; j++)
-		{
-			bool inCorrect;
-			do
-			{
-				inCorrect = false;
-				cout << "Enter matrix[" << i + 1 << "][" << j + 1 << "]: ";
-				in >> myMatrix.matrix[i][j];
-				if (in.fail())
-				{
-					in.clear();
-					cout << "Invalid input" << endl;
-					inCorrect = true;
-				}
-				in.ignore(32767, '\n');
-			} while (inCorrect);
-		}
-	}
-	return in;
 }
 
 Matrix Matrix::algebraicComplement(int a, int b)
@@ -381,6 +345,45 @@ Matrix Matrix::tringulation()
 float Matrix::det()
 {
 	return findDet(*this);
+}
+
+
+std::ostream& operator << (std::ostream& out, const Matrix& myMatrix)
+{
+	for (int i = 0; i < myMatrix.rows; i++)
+	{
+		for (int j = 0; j < myMatrix.columns; j++)
+		{
+			out << myMatrix.matrix[i][j] << "\t";
+		}
+		out << endl;
+	}
+	return out;
+}
+
+std::istream& operator >> (std::istream& in, Matrix& myMatrix)
+{
+	for (int i = 0; i < myMatrix.rows; i++)
+	{
+		for (int j = 0; j < myMatrix.columns; j++)
+		{
+			bool inCorrect;
+			do
+			{
+				inCorrect = false;
+				cout << "Enter matrix[" << i + 1 << "][" << j + 1 << "]: ";
+				in >> myMatrix.matrix[i][j];
+				if (in.fail())
+				{
+					in.clear();
+					cout << "Invalid input" << endl;
+					inCorrect = true;
+				}
+				in.ignore(32767, '\n');
+			} while (inCorrect);
+		}
+	}
+	return in;
 }
 
 
