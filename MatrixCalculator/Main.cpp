@@ -6,6 +6,7 @@ using namespace std;
 void CramerMethod(Matrix a, Matrix b)
 {
 	cout << "Crammer method: " << endl << endl;;
+	cout << "|------------------------Crammer Method-----------------------|" << endl << endl;
 	float aDet = a.det();
 	cout << "A det: " << aDet << endl << endl;
 	Matrix x(a.getRows(), 1);
@@ -47,7 +48,7 @@ void MatrixMethod(Matrix a, Matrix b)
 	Matrix inverMatrix = (a.inverseMatrix());
 	cout << "Inverse Matrix: " << endl;
 	cout << inverMatrix << endl;
-	cout << "|------------------------------------------------------------|" << endl << endl;
+	cout << "|-----------------------Matrix Method------------------------|" << endl << endl;
 	cout << "Matrix column unknown = Inverse matrix(A) * B: " << endl;
 	cout << inverMatrix * b << endl;
 	cout << "|------------------------------------------------------------|" << endl << endl;
@@ -55,7 +56,7 @@ void MatrixMethod(Matrix a, Matrix b)
 
 void GaussMethod(Matrix a, Matrix b)
 {
-	cout << "Gauss Method: " << endl << endl;
+	cout << "|------------------------Gauss Method------------------------| " << endl << endl;
 	Matrix x(a.rows, 1);
 	Matrix tmp(a.rows, a.columns + 1);
 
@@ -400,37 +401,46 @@ int main()
 				cout << "Column of the free member b:" << endl;
 				cout << b << endl;
 
-				cout << "1.Crammer Method" << endl;
-				cout << "2.Gauss Method" << endl;
-				cout << "3.Matrix Method" << endl;
-				cout << "Press espace to exit..." << endl << endl;
+				if (a.det() != 0)
+				{
+					cout << "|-----------------------|" << endl;
+					cout << "1.Crammer Method" << endl;
+					cout << "2.Gauss Method" << endl;
+					cout << "3.Matrix Method" << endl;
+					cout << "Press espace to exit..." << endl;
+					cout << "|-----------------------|" << endl << endl;
 
+					do {
 
-				do {
+						submenu = _getch();
+						switch (submenu)
+						{
+						case 49:
+						{
+							CramerMethod(a, b);
+							break;
+						}
+						case 50:
+						{
+							GaussMethod(a, b);
+							break;
+						}
+						case 51:
+						{
+							MatrixMethod(a, b);
+							break;
+						}
+						default:
+							break;
+						}
 
-					submenu = _getch();
-					switch (submenu)
-					{
-					case 49:
-					{
-						CramerMethod(a, b);
-						break;
-					}
-					case 50:
-					{
-						GaussMethod(a, b);
-						break;
-					}
-					case 51:
-					{
-						MatrixMethod(a, b);
-						break;
-					}
-					default:
-						break;
-					}
-
-				} while (submenu != 27);
+					} while (submenu != 27);
+				}
+				else
+				{
+					cout << "Determinant matrix of the system = 0" << endl;
+					pause();
+				}
 
 				break;
 			}
