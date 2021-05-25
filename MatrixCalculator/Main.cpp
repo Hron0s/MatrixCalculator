@@ -1,9 +1,106 @@
 ﻿#include <iostream>
 #include <conio.h>
-#include <limits>
 #include "Matrix.h"
 using namespace std;
 
+void CramerMethod(Matrix a, Matrix b)
+{
+	cout << "Crammer method: " << endl << endl;;
+	float aDet = a.det();
+	cout << "A det: " << aDet << endl << endl;
+	Matrix x(a.getRows(), 1);
+	for (int i = 0; i < a.getRows(); i++)
+	{
+		Matrix tmp(a.getRows(), a.getColumns());
+		for (int j = 0; j < a.getRows(); j++)
+		{
+			for (int k = 0; k < a.getColumns(); k++)
+			{
+				if (i == k)
+				{
+					tmp[j][k] = b[j][0];
+				}
+				else
+				{
+					tmp[j][k] = a[j][k];
+				}
+			}
+		}
+
+		float tmpDet = tmp.det();
+		cout << "Matrix [" << i + 1 << "]:" << endl;
+		cout << tmp << endl;
+		cout << "Matrix [" << i + 1 << "] det: " << tmpDet << endl;
+		cout << "x[" << i + 1 << "] = (" << tmpDet << " / " << aDet << ") = " << (tmpDet / aDet) << endl << endl << endl;
+		x[i][0] = tmp.det() / aDet;
+	}
+
+	cout << "|------------------------------------------------------------|" << endl << endl;
+	cout << "Matrix column unknown: " << endl;
+	cout << x << endl;
+	cout << "|------------------------------------------------------------|" << endl << endl;
+}
+
+void MatrixMethod(Matrix a, Matrix b)
+{
+	cout << "Matrix Method: " << endl << endl;
+	Matrix inverMatrix = (a.inverseMatrix());
+	cout << "Inverse Matrix: " << endl;
+	cout << inverMatrix << endl;
+	cout << "|------------------------------------------------------------|" << endl << endl;
+	cout << "Matrix column unknown = Inverse matrix(A) * B: " << endl;
+	cout << inverMatrix * b << endl;
+	cout << "|------------------------------------------------------------|" << endl << endl;
+}
+
+void GaussMethod(Matrix a, Matrix b)
+{
+	cout << "Gauss Method: " << endl << endl;
+	Matrix x(a.rows, 1);
+	Matrix tmp(a.rows, a.columns + 1);
+
+	for (int i = 0; i < a.rows; i++)
+	{
+		for (int j = 0; j < a.columns; j++)
+		{
+			tmp[i][j] = a[i][j];
+		}
+	}
+	for (int i = 0; i < a.rows; i++)
+	{
+		tmp[i][a.columns] = b[i][0];
+	}
+
+	cout << "Let's write the system in the form of an extended matrix: " << endl;
+	cout << tmp << endl;
+
+	cout << "Let us reduce the matrix to triangular form: " << endl;
+	tmp = tmp.tringulation();
+	cout << tmp << endl;
+
+
+	for (int i = a.rows - 1; i >= 0; i--)
+	{
+		x[i][0] = tmp[i][a.rows] / tmp[i][i];
+		for (int c = a.rows - 1; c > i; c--)
+		{
+			x[i][0] = x[i][0] - tmp[i][c] * x[c][0] / tmp[i][i];
+		}
+	}
+
+	cout << "At the second stage, we will solve the obtained equations in the reverse order. We have: " << endl;
+	for (int i = a.rows - 1; i >= 0; i--)
+	{
+		cout << "x[" << i + 1 << "] = " << x[i][0] << endl;
+	}
+	cout << endl;
+	cout << "|------------------------------------------------------------|" << endl << endl;
+
+	cout << "Matrix column unknown: " << endl;
+	cout << x << endl;
+	cout << "|------------------------------------------------------------|" << endl << endl;
+
+}
 
 void menu()
 {
@@ -46,7 +143,7 @@ int main()
 	int selectedMenu;
 	do
 	{
-		try 
+		try
 		{
 			system("cls");
 			menu();
@@ -316,20 +413,17 @@ int main()
 					{
 					case 49:
 					{
-						cout << "Crammer Method: " << endl;
-						cout << CramerMethod(a, b) << endl;
+						CramerMethod(a, b);
 						break;
 					}
 					case 50:
 					{
-						cout << "Gauss Method: " << endl;
-						cout << GaussMethod(a, b) << endl;
+						GaussMethod(a, b);
 						break;
 					}
 					case 51:
 					{
-						cout << "Matrix Method: " << endl;
-						cout << MatrixMethod(a, b) << endl;
+						MatrixMethod(a, b);
 						break;
 					}
 					default:

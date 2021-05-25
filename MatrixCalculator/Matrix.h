@@ -41,9 +41,9 @@ public:
 	friend std::ostream& operator << (std::ostream& out, const Matrix& myMatrix);
 	friend std::istream& operator >> (std::istream& in, Matrix& myMatrix);
 
-	friend Matrix CramerMethod(Matrix a, Matrix b);
-	friend Matrix MatrixMethod(Matrix a, Matrix b);
-	friend Matrix GaussMethod(Matrix a, Matrix b);
+	friend void CramerMethod(Matrix a, Matrix b);
+	friend void MatrixMethod(Matrix a, Matrix b);
+	friend void GaussMethod(Matrix a, Matrix b);
 
 };
 
