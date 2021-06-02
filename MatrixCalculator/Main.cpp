@@ -5,7 +5,6 @@ using namespace std;
 
 void CramerMethod(Matrix a, Matrix b)
 {
-	cout << "Crammer method: " << endl << endl;;
 	cout << "|------------------------Crammer Method-----------------------|" << endl << endl;
 	float aDet = a.det();
 	cout << "A det: " << aDet << endl << endl;
@@ -44,11 +43,11 @@ void CramerMethod(Matrix a, Matrix b)
 
 void MatrixMethod(Matrix a, Matrix b)
 {
-	cout << "Matrix Method: " << endl << endl;
+	cout << "|-----------------------Matrix Method------------------------|" << endl << endl;
 	Matrix inverMatrix = (a.inverseMatrix());
 	cout << "Inverse Matrix: " << endl;
 	cout << inverMatrix << endl;
-	cout << "|-----------------------Matrix Method------------------------|" << endl << endl;
+	cout << "|------------------------------------------------------------|" << endl << endl;
 	cout << "Matrix column unknown = Inverse matrix(A) * B: " << endl;
 	cout << inverMatrix * b << endl;
 	cout << "|------------------------------------------------------------|" << endl << endl;
@@ -138,9 +137,32 @@ void pause()
 	} while (key != 13);
 }
 
+double getSize()
+{
+	while (true)
+	{
+		int a;
+		cout << "Input: ";
+		cin >> a;
+
+		if (std::cin.fail() || a <= 0)
+		{
+			cin.clear();
+			cin.ignore(32767, '\n');
+			cout << "Invalid input" << endl;
+		}
+		else
+		{
+			std::cin.ignore(32767, '\n');
+
+			return a;
+		}
+	}
+}
+
+
 int main()
 {
-	cin.exceptions(ios_base::failbit);
 	int selectedMenu;
 	do
 	{
@@ -155,10 +177,9 @@ int main()
 			{
 			case 49:
 			{
-				int n;
 				cout << "Matrix[n x n] determinant" << endl;
-				cout << "Enter the size of the square matrix [n]: ";
-				cin >> n;
+				cout << "Enter the size of the square matrix [n]" << endl;
+				int n = getSize();
 				Matrix a(n);
 				cout << endl;
 				cout << "Enter matrix[" << n << " x " << n << "]" << endl;
@@ -173,10 +194,9 @@ int main()
 			}
 			case 50:
 			{
-				int n;
 				cout << "Inverse matrix[n x n]" << endl;
-				cout << "Enter the size of the square matrix [n]: ";
-				cin >> n;
+				cout << "Enter the size of the square matrix [n]" << endl;
+				int n = getSize();
 				Matrix a(n);
 				cout << endl;
 				cout << "Enter matrix[" << n << " x " << n << "]" << endl;
@@ -200,13 +220,11 @@ int main()
 			}
 			case 51:
 			{
-				int n;
-				int m;
 				cout << "Transpose Matrix[n x m]" << endl;
-				cout << "Enter the size of [n]: ";
-				cin >> n;
-				cout << "Enter the size of [m]: ";
-				cin >> m;
+				cout << "Enter the size of [n]" << endl;
+				int n = getSize();
+				cout << "Enter the size of [m]" << endl;
+				int m = getSize();
 				Matrix a(n, m);
 				cout << endl;
 				cout << "Enter matrix[" << n << " x " << m << "]" << endl;
@@ -222,13 +240,11 @@ int main()
 			}
 			case 52:
 			{
-				int n;
-				int m;
 				cout << "Triangularization matrix[n x m]" << endl;
-				cout << "Enter the size of [n]: ";
-				cin >> n;
-				cout << "Enter the size of [m]: ";
-				cin >> m;
+				cout << "Enter the size of [n]" << endl;
+				int n = getSize();
+				cout << "Enter the size of [m]" << endl;
+				int m = getSize();
 				Matrix a(n, m);
 				cout << endl;
 				cout << "Enter matrix[" << n << " x " << m << "]" << endl;
@@ -244,11 +260,10 @@ int main()
 			}
 			case 53:
 			{
-				int n;
 				int z;
 				cout << "Exponentiation of a matrix[n x n]" << endl;
-				cout << "Enter the size of the square matrix [n]: ";
-				cin >> n;
+				cout << "Enter the size of the square matrix [n]" << endl;
+				int n = getSize();
 				Matrix a(n);
 				cout << endl;
 				cout << "Enter matrix[" << n << " x " << n << "]" << endl;
@@ -267,14 +282,12 @@ int main()
 			}
 			case 54:
 			{
-				int n;
-				int m;
 				float z;
 				cout << "Multiplying a matrix[n x m] by a number" << endl;
-				cout << "Enter the size of [n]: ";
-				cin >> n;
-				cout << "Enter the size of [m]: ";
-				cin >> m;
+				cout << "Enter the size of [n]" << endl;
+				int n = getSize();
+				cout << "Enter the size of [m]" << endl;
+				int m = getSize();
 				Matrix a(n, m);
 				cout << endl;
 				cout << "Enter matrix[" << n << " x " << m << "]" << endl;
@@ -293,13 +306,11 @@ int main()
 			}
 			case 55:
 			{
-				int n;
-				int m;
 				cout << "Matrix A[n x m], Matrix B[n x m] addition" << endl;
-				cout << "Enter the size of [n]: ";
-				cin >> n;
-				cout << "Enter the size of [m]: ";
-				cin >> m;
+				cout << "Enter the size of [n]" << endl;
+				int n = getSize();
+				cout << "Enter the size of [m]" << endl;
+				int m = getSize();
 				cout << endl;
 				Matrix a(n, m), b(n, m);
 				cout << "Enter matrix A[" << n << " x " << m << "]" << endl;
@@ -320,13 +331,11 @@ int main()
 			}
 			case 56:
 			{
-				int n;
-				int m;
 				cout << "Matrix A[n x m], Matrix B[n x m] difference" << endl;
-				cout << "Enter the size of [n]: ";
-				cin >> n;
-				cout << "Enter the size of [m]: ";
-				cin >> m;
+				cout << "Enter the size of [n]" << endl;
+				int n = getSize();
+				cout << "Enter the size of [m]" << endl;
+				int m = getSize();
 				cout << endl;
 				Matrix a(n, m), b(n, m);
 				cout << "Enter matrix A[" << n << " x " << m << "]" << endl;
@@ -347,15 +356,14 @@ int main()
 			}
 			case 57:
 			{
-				int n, k, m;
 				cout << "Matrix multiplication" << endl;
 				cout << "A[n x k] * B[k x m] = C[n x m]" << endl;
-				cout << "Enter [n]: ";
-				cin >> n;
-				cout << "Enter [k]: ";
-				cin >> k;
-				cout << "Enter [m]: ";
-				cin >> m;
+				cout << "Enter [n]" << endl;
+				int n = getSize();
+				cout << "Enter [k]" << endl;
+				int k = getSize();
+				cout << "Enter [m]" << endl;
+				int m = getSize();
 				Matrix a(n, k), b(k, m);
 				cout << "Enter matrix A[" << n << " x " << k << "]" << endl;
 				cin >> a;
@@ -375,7 +383,6 @@ int main()
 			}
 			case 48:
 			{
-				int n;
 				int submenu;
 				cout << "Solution of a system of linear equations" << endl;
 				cout << "The quadratic system of linear algebraic equations can be represented in matrix form as: " << endl << endl;
@@ -386,8 +393,8 @@ int main()
 				cout << "|a[n][1] a[n][2] ... a[n][n]|   |x[n]|   |b[n]|" << endl << endl;
 				cout << "Here A is the matrix of the system, x is the column of unknowns, and b is the column of free members." << endl << endl;
 
-				cout << "Enter the number of unknowns [n]: ";
-				cin >> n;
+				cout << "Enter the number of unknowns [n]" << endl;
+				int n = getSize();
 
 				Matrix a(n, n), b(n, 1);
 				cout << "Enter the matrix of the system A" << endl;
@@ -446,15 +453,11 @@ int main()
 			}
 			}
 		}
-		catch (ios_base::failure)
+		catch (...)
 		{
-			cin.exceptions(ios_base::goodbit);
 			cout << "Error..." << endl;
-
 			cin.clear();
-			cin.ignore();
 			cin.ignore(32767, '\n');
-
 			pause();
 		}
 

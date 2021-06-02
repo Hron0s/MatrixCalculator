@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cmath>
 #include "Matrix.h"
-#include <iomanip>
 using namespace std;
 
 Matrix::Matrix()
@@ -75,19 +74,18 @@ int Matrix::getColumns()
 }
 
 
-int Matrix::col_max(int n1, int n2)
+int Matrix::col_max(int n)
 {
-	int index = n1;
-	int max = abs(matrix[n1][n1]);
+	int index = n;
+	int max = abs(matrix[n][n]);
 
-	for (int i = n1 + 1; i < n2; i++)
+	for (int i = n + 1; i < rows; i++)
 	{
-		if (abs(matrix[i][n1]) > max)
+		if (abs(matrix[i][n]) > max)
 		{
-			max = abs(matrix[i][n1]);
+			max = abs(matrix[i][n]);
 			index = i;
 		}
-
 	}
 	return index;
 }
@@ -226,7 +224,6 @@ bool Matrix::operator == (const Matrix& other)
 	{
 		return false;
 	}
-
 }
 
 
@@ -325,7 +322,7 @@ Matrix Matrix::tringulation()
 	Matrix a(*this);
 	for (int i = 0; i < rows; i++)
 	{
-		int imax = col_max(i, rows);
+		int imax = col_max(i);
 		if (i != imax)
 		{
 			a.swapRows(i, imax);
