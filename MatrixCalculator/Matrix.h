@@ -5,7 +5,7 @@ class Matrix
 	float** matrix;
 
 	float findDet(Matrix a);
-	int rowMaxElement(int n1, int n2);
+	int col_max(int n1, int n2);
 	void swapRows(int n1, int n2);
 
 public:

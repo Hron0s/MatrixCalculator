@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 #include "Matrix.h"
 #include <iomanip>
 using namespace std;
@@ -74,21 +75,19 @@ int Matrix::getColumns()
 }
 
 
-int Matrix::rowMaxElement(int n1, int n2)
+int Matrix::col_max(int n1, int n2)
 {
-	int index = 0;
-	int max = matrix[0][0];
+	int index = n1;
+	int max = abs(matrix[n1][n1]);
 
-	for (int i = n1; i < n2; i++)
+	for (int i = n1 + 1; i < n2; i++)
 	{
-		for (int j = 0; j < columns; j++)
+		if (abs(matrix[i][n1]) > max)
 		{
-			if (matrix[i][j] > max)
-			{
-				max = matrix[i][j];
-				index = i;
-			}
+			max = abs(matrix[i][n1]);
+			index = i;
 		}
+
 	}
 	return index;
 }
@@ -326,8 +325,11 @@ Matrix Matrix::tringulation()
 	Matrix a(*this);
 	for (int i = 0; i < rows; i++)
 	{
-		int imax = rowMaxElement(i, rows);
-		swapRows(i, imax);
+		int imax = col_max(i, rows);
+		if (i != imax)
+		{
+			a.swapRows(i, imax);
+		}
 
 		for (int j = i + 1; j < rows; j++)
 		{
