@@ -5,7 +5,7 @@ using namespace std;
 
 void CramerMethod(Matrix a, Matrix b)
 {
-	cout << "|------------------------Crammer Method-----------------------|" << endl << endl;
+	cout << "|-----------------------Crammer Method-----------------------|" << endl << endl;
 	float aDet = a.det();
 	cout << "A det: " << aDet << endl << endl;
 	Matrix x(a.getRows(), 1);
@@ -35,7 +35,7 @@ void CramerMethod(Matrix a, Matrix b)
 		x[i][0] = tmp.det() / aDet;
 	}
 
-	cout << "|------------------------------------------------------------|" << endl << endl;
+	cout << "|---------------------------Result---------------------------|" << endl << endl;
 	cout << "Matrix column unknown: " << endl;
 	cout << x << endl;
 	cout << "|------------------------------------------------------------|" << endl << endl;
@@ -47,7 +47,7 @@ void MatrixMethod(Matrix a, Matrix b)
 	Matrix inverMatrix = (a.inverseMatrix());
 	cout << "Inverse Matrix: " << endl;
 	cout << inverMatrix << endl;
-	cout << "|------------------------------------------------------------|" << endl << endl;
+	cout << "|---------------------------Result---------------------------|" << endl << endl;
 	cout << "Matrix column unknown = Inverse matrix(A) * B: " << endl;
 	cout << inverMatrix * b << endl;
 	cout << "|------------------------------------------------------------|" << endl << endl;
@@ -56,19 +56,19 @@ void MatrixMethod(Matrix a, Matrix b)
 void GaussMethod(Matrix a, Matrix b)
 {
 	cout << "|------------------------Gauss Method------------------------| " << endl << endl;
-	Matrix x(a.rows, 1);
-	Matrix tmp(a.rows, a.columns + 1);
+	Matrix x(a.getRows(), 1);
+	Matrix tmp(a.getRows(), a.getColumns() + 1);
 
-	for (int i = 0; i < a.rows; i++)
+	for (int i = 0; i < a.getRows(); i++)
 	{
-		for (int j = 0; j < a.columns; j++)
+		for (int j = 0; j < a.getColumns(); j++)
 		{
 			tmp[i][j] = a[i][j];
 		}
 	}
-	for (int i = 0; i < a.rows; i++)
+	for (int i = 0; i < a.getColumns(); i++)
 	{
-		tmp[i][a.columns] = b[i][0];
+		tmp[i][a.getColumns()] = b[i][0];
 	}
 
 	cout << "Let's write the system in the form of an extended matrix: " << endl;
@@ -79,22 +79,22 @@ void GaussMethod(Matrix a, Matrix b)
 	cout << tmp << endl;
 
 
-	for (int i = a.rows - 1; i >= 0; i--)
+	for (int i = a.getRows() - 1; i >= 0; i--)
 	{
-		x[i][0] = tmp[i][a.rows] / tmp[i][i];
-		for (int c = a.rows - 1; c > i; c--)
+		x[i][0] = tmp[i][a.getRows()] / tmp[i][i];
+		for (int c = a.getRows() - 1; c > i; c--)
 		{
 			x[i][0] = x[i][0] - tmp[i][c] * x[c][0] / tmp[i][i];
 		}
 	}
 
 	cout << "At the second stage, we will solve the obtained equations in the reverse order. We have: " << endl;
-	for (int i = a.rows - 1; i >= 0; i--)
+	for (int i = a.getRows() - 1; i >= 0; i--)
 	{
 		cout << "x[" << i + 1 << "] = " << x[i][0] << endl;
 	}
 	cout << endl;
-	cout << "|------------------------------------------------------------|" << endl << endl;
+	cout << "|---------------------------Result---------------------------|" << endl << endl;
 
 	cout << "Matrix column unknown: " << endl;
 	cout << x << endl;
@@ -113,6 +113,7 @@ void menu()
 	cout << "| $$ \\/  | $$|  $$$$$$$  |  $$$$/| $$      | $$ /$$/\\  $$     | $$$$         /$$$$" << endl;
 	cout << "|__/     |__/ \\_______/   \\___/  |__/      |__/|__/  \\__/     |____/        |____/" << endl << endl;
 
+	cout << "|------------------------------------------------------------|" << endl;
 	cout << "1. Determinant of a square matrix " << endl;
 	cout << "2. Inverse matrix" << endl;
 	cout << "3. Transpose matrix" << endl;
@@ -124,6 +125,7 @@ void menu()
 	cout << "9. Matrix multiplication" << endl;
 	cout << "0. Solution of a system of linear equations" << endl;
 	cout << "Press espace to exit..." << endl;
+	cout << "|------------------------------------------------------------|" << endl;
 }
 
 void pause()
@@ -397,7 +399,7 @@ int main()
 				int n = getSize();
 
 				Matrix a(n, n), b(n, 1);
-				cout << "Enter the matrix of the system A" << endl;
+				cout << "Enter the matrix[" << a.getRows() << " x " << a.getColumns() << "] of the system A" << endl;
 				cin >> a;
 				cout << endl;
 				cout << "Enter the column of free members b" << endl;
