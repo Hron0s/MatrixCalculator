@@ -114,16 +114,16 @@ void menu()
 	cout << "|__/     |__/ \\_______/   \\___/  |__/      |__/|__/  \\__/     |____/        |____/" << endl << endl;
 
 	cout << "|------------------------------------------------------------|" << endl;
-	cout << "1. Determinant of a square matrix " << endl;
-	cout << "2. Inverse matrix" << endl;
-	cout << "3. Transpose matrix" << endl;
-	cout << "4. Triangularization " << endl;
-	cout << "5. Exponentiation of a matrix" << endl;
-	cout << "6. Multiplying a matrix by a Number" << endl;
-	cout << "7. Matrix addition" << endl;
-	cout << "8. Matrix difference" << endl;
-	cout << "9. Matrix multiplication" << endl;
-	cout << "0. Solution of a system of linear equations" << endl;
+	cout << "[1] Determinant of a square matrix " << endl;
+	cout << "[2] Inverse matrix" << endl;
+	cout << "[3] Transpose matrix" << endl;
+	cout << "[4] Triangularization " << endl;
+	cout << "[5] Exponentiation of a matrix" << endl;
+	cout << "[6] Multiplying a matrix by a Number" << endl;
+	cout << "[7] Matrix addition" << endl;
+	cout << "[8] Matrix difference" << endl;
+	cout << "[9] Matrix multiplication" << endl;
+	cout << "[0] Solution of a system of linear equations" << endl;
 	cout << "Press espace to exit..." << endl;
 	cout << "|------------------------------------------------------------|" << endl;
 }
@@ -139,7 +139,7 @@ void pause()
 	} while (key != 13);
 }
 
-double getSize()
+int getSize()
 {
 	while (true)
 	{
@@ -413,9 +413,9 @@ int main()
 				if (a.det() != 0)
 				{
 					cout << "|-----------------------|" << endl;
-					cout << "1.Crammer Method" << endl;
-					cout << "2.Gauss Method" << endl;
-					cout << "3.Matrix Method" << endl;
+					cout << "[1] Crammer Method" << endl;
+					cout << "[2] Gauss Method" << endl;
+					cout << "[3]Matrix Method" << endl;
 					cout << "Press espace to exit..." << endl;
 					cout << "|-----------------------|" << endl << endl;
 
